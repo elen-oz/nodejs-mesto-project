@@ -1,19 +1,19 @@
 {
-  "name": "starterkits",
+  "name": "nodejs-mesto-backend",
   "version": "1.0.0",
-  "description": "< Добавьте описание проекта в свободной форме >",
+  "description": "Бэкенд проекта Mesto: API пользователей и карточек",
   "main": "dist/app.js",
   "engines": {
     "node": ">=24"
   },
   "scripts": {
-    "lint": "npx eslint src/**/*.ts",
+    "lint": "npx eslint .",
     "build": "tsc",
-    "dev": "ts-node-dev src/app.ts",
+    "dev": "ts-node-dev --files src/app.ts",
     "start": "ts-node src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "< Укажите здесь автора работы >",
+  "author": "Lena Ozerova",
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^5.0.6",

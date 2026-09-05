@@ -1,8 +1,19 @@
-# Бэкенд Mesto. Каркас API Mesto
+# Mesto Backend — API Skeleton
 
-## Используемые технологии и решения
-- Typescript в качестве основного языка проекта
-- Mongodb и ODM Mongoose для хранения данных пользователей
-- Node.js в качестве среды выполнения
+REST API for the Mesto service: users and photo cards.
 
-Перед отправкой работы на проверку убедитесь что она соответствует требованиям проектной работы
+## Stack
+
+TypeScript, Node.js, Express, MongoDB, Mongoose.
+
+## Getting started
+
+Requires a running local MongoDB at `mongodb://localhost:27017/mestodb`.
+
+```bash
+npm install
+npm run dev
+```
+
+The server starts on http://localhost:3000.
+

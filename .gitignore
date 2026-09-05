@@ -16,3 +16,8 @@ node_modules
 
 # Typescript build
 dist
+
+# API docs
+docs
+
+.env

@@ -23,4 +23,9 @@
   "exclude": [
     "node_modules"
   ],
+  /* Просим ts-node подключать все файлы из include,
+     иначе он не увидит описание типов в src/types/express.d.ts */
+  "ts-node": {
+    "files": true
+  },
 }
