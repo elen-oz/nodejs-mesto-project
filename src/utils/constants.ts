@@ -1,7 +1,5 @@
 export const CREATED = 201;
 
-export const BAD_REQUEST = 400;
+export const URL_REGEX = /^https?:\/\/(www\.)?(?!www\.)[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,}([-._~:/?#[\]@!$&'()*+,;=\w]*)#?$/;
 
-export const NOT_FOUND = 404;
-
-export const INTERNAL_SERVER_ERROR = 500;
+export const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-key';

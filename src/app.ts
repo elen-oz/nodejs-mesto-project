@@ -1,8 +1,17 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
+import { errors } from 'celebrate';
+
 import usersRouter from './routes/users';
 import cardsRouter from './routes/cards';
-import { NOT_FOUND } from './utils/constants';
+
+import { requestLogger, errorLogger } from './middlewares/logger';
+import auth from './middlewares/auth';
+import errorHandler from './middlewares/error-handler';
+import { validateSignin, validateSignup } from './middlewares/validation';
+import { createUser, login } from './controllers/users';
+import { NotFoundError } from './errors';
 
 const PORT = 3000;
 const DB_ADDRESS = 'mongodb://localhost:27017/mestodb';
@@ -11,24 +20,24 @@ const app = express();
 
 mongoose.connect(DB_ADDRESS);
 
+app.use(cors());
 app.use(express.json());
+app.use(requestLogger);
 
-/**
- * Temporary stand-in for authentication
- */
-app.use((req: Request, res: Response, next: NextFunction) => {
-  req.user = {
-    _id: '6a9e83ef93132d5fd76a3566',
-  };
+app.post('/signin', validateSignin, login);
+app.post('/signup', validateSignup, createUser);
 
-  next();
-});
+app.use(auth);
 
 app.use('/users', usersRouter);
 app.use('/cards', cardsRouter);
 
-app.use((req: Request, res: Response) => {
-  res.status(NOT_FOUND).send({ message: 'Запрашиваемый ресурс не найден' });
+app.use((req, res, next) => {
+  next(new NotFoundError('The requested resource was not found'));
 });
+
+app.use(errorLogger);
+app.use(errors());
+app.use(errorHandler);
 
 app.listen(PORT);
